@@ -13,8 +13,8 @@ import (
 /*SearchProducts controlador de la ruta search*/
 func SearchProducts(w http.ResponseWriter, r *http.Request) {
 
-	//w.Header().Add("content-type", "application/json")
-
+	var id int
+	var result []models.Product
 	var sp models.SearchRequest
 
 	err := json.NewDecoder(r.Body).Decode(&sp)
@@ -29,21 +29,36 @@ func SearchProducts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var id int
-
 	id, err = strconv.Atoi(sp.Search)
 
 	/*Si da error es un string e  invocamos un repositorio*/
 	if err != nil {
-		fmt.Println(err.Error())
-	}
 
-	/*Si es un entero entonces invocamos un repositorio para buscar el producto por su id*/
-	result, err := repositories.SearchProductById(id)
+		if len(sp.Search) <= 3 {
+			http.Error(w, "El campo de búsquda debe tener al menos 4 caracteres ", 400)
+			return
+		}
+
+		result, err = repositories.SearchProductByString(sp.Search)
+
+		if err != nil {
+			http.Error(w, "Sin resultados "+err.Error(), 400)
+			return
+		}
+
+	} else {
+		//Si no da error es un entero valido y buscamos por su id
+		result, err = repositories.SearchProductById(id)
+
+	}
 
 	if err != nil {
 		http.Error(w, "Registro no encontrado "+err.Error(), 400)
 		return
+	}
+
+	if result == nil {
+		http.Error(w, "Sin resultados", http.StatusNoContent)
 	}
 
 	w.Header().Set("Content-Type", "Application/json")

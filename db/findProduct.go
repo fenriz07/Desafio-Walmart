@@ -10,13 +10,14 @@ import (
 )
 
 /*FindProductID busca un producto por su id*/
-func FindProductID(idProduct int) (models.Product, error) {
+func FindProductID(idProduct int) ([]models.Product, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
 	db := MongoCN.Database("walmart")
 	col := db.Collection("products")
-	var product models.Product
+
+	var products []models.Product
 
 	idProductTmp := idProduct
 
@@ -24,12 +25,28 @@ func FindProductID(idProduct int) (models.Product, error) {
 		"product_id": idProductTmp,
 	}
 
-	err := col.FindOne(ctx, condition).Decode(&product)
+	cur, err := col.Find(ctx, condition)
 
 	if err != nil {
 		fmt.Println("Registro no encontrado " + err.Error())
-		return product, err
+		return products, err
 	}
 
-	return product, err
+	for cur.Next(ctx) {
+		var p models.Product
+		err := cur.Decode(&p)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			return products, err
+		}
+
+		if p.IsProductPalindrome() {
+			p.ApplyDiscount()
+		}
+
+		products = append(products, p)
+	}
+
+	return products, err
 }
