@@ -3,16 +3,19 @@ package main
 import (
 	"log"
 
-	"github.com/fenriz07/Desafio-W/bd"
+	"github.com/fenriz07/Desafio-W/db"
 	"github.com/fenriz07/Desafio-W/handlers"
 )
 
 func main() {
 
-	if bd.ChequeoConnection() == 0 {
+	if db.CheckConnection() == 0 {
 		log.Fatal("Sin conexión a la bd")
 		return
 	}
+
+	//Carga los seeders
+	//seeder.LoadSeeder()
 
 	handlers.Init()
 }
