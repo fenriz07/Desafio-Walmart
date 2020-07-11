@@ -1,0 +1,35 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+
+version: "3.1"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-walmart
+    hostname: mongo-walmart-db
+    user: root
+    ports:
+      - 27017:27017
+    networks:
+      appnet:
+        aliases:
+          - dbserver
+  # App Service
+  app:
+    container_name: go-walmart
+    # Configuration for building the docker image for the service
+    build:
+      context: . # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+    hostname: go-walmart-service
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    environment:
+      - DB_HOST=dbserver
+      - DB_PORT=27017
+    networks:
+      - appnet
+    depends_on:
+      - mongodb
+networks:
+  appnet:
+    driver: bridge
