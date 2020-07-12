@@ -15,7 +15,12 @@ import (
 func Init() {
 	router := mux.NewRouter()
 
+	/*API*/
 	router.HandleFunc("/search", middleware.CheckDB(routes.SearchProducts)).Methods("POST")
+	/*Static*/
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+	/*View*/
+	router.HandleFunc("/", middleware.CheckDB(routes.Home)).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 

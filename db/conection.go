@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"log"
+	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -11,12 +12,12 @@ import (
 /*MongoCN tiene el cliente de la conexión*/
 var MongoCN = conection()
 
-/*var dbHost = os.Getenv("DB_HOST")
+var dbHost = os.Getenv("DB_HOST")
 var dbPort = os.Getenv("DB_PORT")
 
-var clientOptions = options.Client().ApplyURI("mongodb://" + dbHost + ":" + dbPort)*/
+var clientOptions = options.Client().ApplyURI("mongodb://" + dbHost + ":" + dbPort)
 
-var clientOptions = options.Client().ApplyURI("mongodb+srv://fenriz:ReGBipJ9yLE3hs3@cluster0-42e6i.mongodb.net/twittor?retryWrites=true&w=majority")
+//var clientOptions = options.Client().ApplyURI("mongodb+srv://fenriz:ReGBipJ9yLE3hs3@cluster0-42e6i.mongodb.net/twittor?retryWrites=true&w=majority")
 
 /* conection es la funcion que hace la conexion*/
 func conection() *mongo.Client {
