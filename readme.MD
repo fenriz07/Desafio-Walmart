@@ -47,7 +47,7 @@
 1. Clone este repositorio o descargelo
 2. Entre al directorio raíz del repositorio
 3. Ejecute `sudo docker-compose up`
-4. Abra su explorador favorito y escriba la dirección: `http://localhost:8080/buscador`
+4. Abra su explorador favorito y escriba la dirección: `http://localhost:8080`
 
 ## Docker
 
