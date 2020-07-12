@@ -43,3 +43,7 @@
 ## Docker
 
 Proyecto creado con 2 contenedores, vinculados en una red.
+
+## Notas
+
+1. Reconstruir `sudo docker-compose up --build -d`

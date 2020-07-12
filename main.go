@@ -5,6 +5,7 @@ import (
 
 	"github.com/fenriz07/Desafio-W/db"
 	"github.com/fenriz07/Desafio-W/handlers"
+	"github.com/fenriz07/Desafio-W/seeder"
 )
 
 func main() {
@@ -15,7 +16,7 @@ func main() {
 	}
 
 	//Carga los seeders
-	//seeder.LoadSeeder()
+	seeder.LoadSeeder()
 
 	handlers.Init()
 }
