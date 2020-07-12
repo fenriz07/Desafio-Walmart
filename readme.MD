@@ -16,6 +16,8 @@
 - 📁 repositories ➡️ Enlace entre un controlador y el modelo, reutilizable en otras partes.
 - 📁 routes ➡️ Acciones asociadas a las rutas del handler
 - 📁 seeder ➡️ Collecciones que son cargadas cuando se inicia el proyecto
+- 📁 static ➡️ Archivos estaticos
+- 📁 resources ➡️ Vistas
 
 #### Dependencias del lenguaje 🔌
 
@@ -27,11 +29,18 @@
 
 - Lenguaje: JavaScript ES6
 - Framework: ReactJs
-- Repositorio:
+- Repositorio: https://github.com/fenriz07/frw
 
 #### Dependencias del front
 
-- ReactJs
+- react
+- react-bootstrap
+- react-dom
+- react-scripts
+- bootstrap
+- cra-template
+- lodash
+- nodesass
 
 ## Instrucciones
 
