@@ -57,6 +57,12 @@ Proyecto creado con 2 contenedores, vinculados en una red.
 
 1.Ejecutar tests: `go test $(pwd)/tests` dentro del directorio raíz del proyecto
 
+## Parametros para buscar
+
+![imagen](https://user-images.githubusercontent.com/9199380/87319056-1fefd900-c4f7-11ea-81b3-aaf9cb2b47ca.png)
+
+Puede buscar por id del producto: rango(1,3000), por su marca o descripción. *sjlzxeo*
+
 ## Notas
 
 1. Reconstruir `sudo docker-compose up --build -d`
