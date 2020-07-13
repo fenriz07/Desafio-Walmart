@@ -53,6 +53,10 @@
 
 Proyecto creado con 2 contenedores, vinculados en una red.
 
+## Tests
+
+1.Ejecutar tests: `go test $(pwd)/tests` dentro del directorio raíz del proyecto
+
 ## Notas
 
 1. Reconstruir `sudo docker-compose up --build -d`
