@@ -1,4 +1,4 @@
-# Desafio W
+# Desafio Walmart
 
 ## Detalles tecnicos
 
